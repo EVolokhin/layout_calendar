@@ -22,6 +22,19 @@ h1 {
   margin-left: auto;
   margin-right: auto ;
 
+  @for $i from 28 through 31 {
+    &-#{$i} div:nth-child(0n+#{$i}) ~ div {
+      visibility: hidden;
+    }
+  }
+
+  @each $day, $number in
+    (mon: 0, tue: 1, wed: 2, thu: 3, fri: 4, sat: 5, sun: 6) {
+    &-#{$day} div:first-child {
+      margin-left: $number * 102px + 1px;
+    }
+  }
+
   div {
     display: flex;
     justify-content: center;
@@ -46,20 +59,6 @@ h1 {
       &:nth-child(#{$i})::after {
         content: "#{$i}";
       }
-    }
-  }
-
-  @for $i from 28 through 31 {
-    &-#{$i} div:nth-child(0n+#{$i}) ~ div {
-      visibility: hidden;
-    }
-  }
-
-  @each $day, $number in
-    (mon: 0, tue: 1, wed: 2, thu: 3, fri: 4, sat: 5, sun: 6)
- {
-    &-#{$day} div:first-child {
-      margin-left: $number * 102px + 1px;
     }
   }
 }
